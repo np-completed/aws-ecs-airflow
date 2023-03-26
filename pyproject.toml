@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "aws-ecs-airflow"
+version = "0.1.0"
+description = ""
+authors = ["prfrl <mmadsen1978@gmail.com>"]
+readme = "README.md"
+packages = [{include = "aws_ecs_airflow"}]
+
+[tool.poetry.dependencies]
+python = "3.10.0"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
