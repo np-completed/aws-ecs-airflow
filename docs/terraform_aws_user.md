@@ -21,9 +21,9 @@ In this case, the provider configuration options block would be empty, as the cr
 In the command shell, the environment variables are set as follows:
 
 ```shell
-$ export AWS_ACCESS_KEY_ID="my-access-key"
-$ export AWS_SECRET_ACCESS_KEY="my-secret-key"
-$ export AWS_REGION="us-east-1"
+export AWS_ACCESS_KEY_ID="my-access-key"
+export AWS_SECRET_ACCESS_KEY="my-secret-key"
+export AWS_REGION="us-east-1"
 ```
 
 Alternatively, a token can be used instead of Key ID and Access Key:

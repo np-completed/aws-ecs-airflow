@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "aws_ecs_airflow"}]
 
 [tool.poetry.dependencies]
-python = "3.10.0"
+python = "^3.8.5"
 python-dotenv = "^1.0.0"
 
 
