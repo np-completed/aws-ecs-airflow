@@ -10,6 +10,7 @@ hello:
 
 install:
 	cat requirements.txt | xargs poetry add
+	cat requirements_dev.txt | xargs  poetry add  --group dev
 
 install_dev:
 	cat requirements_dev.txt | xargs  poetry add  --group dev
@@ -34,9 +35,9 @@ git:
 # env_activate:
 # 	@echo "------ Make sure to activate virtual environment again --------"
 
-aws_connect:
-	printenv | grep AWS*
-	# poetry run python -m src/aws_config.py
+# aws_connect:
+# 	printenv | grep AWS*
+# 	# poetry run python -m src/aws_config.py
 
 airflow-up:
 	@docker-compose up --build
@@ -54,10 +55,13 @@ infra-plan: infra-init
 	cd infrastructure && terraform plan;
 
 infra-apply: infra-plan
-	cd infrastructure && terraform apply;
+	cd infrastructure && terraform apply --auto-approve;
+
+infra-plan-destroy:
+	cd infrastructure && terraform plan -destroy;
 
 infra-destroy:
-	cd infrastructure && terraform destroy;
+	cd infrastructure && terraform destroy --auto-approve;
 
 clean:
 	rm -rf postgres_data

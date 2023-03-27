@@ -8,6 +8,36 @@ We want to build infra in AWS using terraform. For this we need an AWS user.
 
 Note that the usual and recommended way to authenticate to AWS when using Terraform is via the AWS CLI, rather than any of the provider options listed above. To do this, first, install the AWS CLI, then type `aws configure`.
 
+- invoke poetry virtual environment  
+
+The best terraform tutorial https://www.youtube.com/watch?v=iRaai1IBlB0 This includes set up for aws config with vscode.
+
+--------
+
+## Check .aws folder
+
+The config file keeps are secret and key.
+
+```shell
+aws sts get-caller-identity
+
+{
+    "UserId": "AIDAYMYFUCQM7K2RD9DDD",
+    "Account": "111147549871",
+    "Arn": "arn:aws:iam::111147549871:user/myself"
+}
+```
+
+
+## Install Terraform
+
+[hashicorp terraform install docs](https://developer.hashicorp.com/terraform/downloads)
+
+```shell
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+```
 
 ## Environment Variables
 
@@ -31,3 +61,21 @@ Alternatively, a token can be used instead of Key ID and Access Key:
 `$ export AWS_SESSION_TOKEN="my-token"`
 
 This might be a useful option when running Terraform from a build agent in a [CI/CD pipeline](https://spacelift.io/blog/ci-cd-pipeline).
+
+### Terraform provider.tf
+
+Use environment variables for AWS auth
+
+```json
+provider "aws" {
+  region  =  "us-east-1"
+}
+
+/* provider "aws" {
+  region     = "us-east-1"
+  access_key = " "
+  secret_key = " "
+} */
+```
+
+> If you look carefully in the provider block then we have only defined `region` while the credentials are being fetched from environment variables.

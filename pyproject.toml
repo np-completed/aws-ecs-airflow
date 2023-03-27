@@ -8,7 +8,12 @@ packages = [{include = "aws_ecs_airflow"}]
 
 [tool.poetry.dependencies]
 python = "^3.8.5"
-python-dotenv = "^1.0.0"
+python-dotenv = "1.0.0" 
+toolz = "0.10.0"
+cattrs = "1.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
 
 
 [build-system]
